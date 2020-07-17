@@ -32,7 +32,7 @@ def get_data(choice):
     video_ids = []
     for i in content:
         count += 1
-        # Get First 20 Results
+        # Get first 20 results
         if count > 20:
             break
         video_ids.append(i[data[0]])
@@ -41,13 +41,15 @@ def get_data(choice):
     return video_ids
 
 
-def video_playback(video_ids):
-    data = ["hlsUrl", "formatStreams"]
+def video_playback(video_ids, queue_length):
+    data = ["hlsUrl", "formatStreams", "title"]
+    queue = 0
     for video_id in video_ids:
+        queue += 1
         url = "https://invidio.us/api/v1/videos/"\
             f"{video_id}?fields={','.join(data)}"
         stream_url = json.loads(urllib.request.urlopen(url).read())
-        # Try To Get 720p Link, Then 360p. Else, Get Livestream Link
+        # Try to get URL for 720p, 360p, then livestream
         try:
             url = stream_url[data[1]][1]["url"]
         except IndexError:
@@ -55,13 +57,15 @@ def video_playback(video_ids):
                 url = stream_url[data[1]][0]["url"]
             except IndexError:
                 url = stream_url[data[0]]
+        title = stream_url[data[2]]
+        print(f"[{queue} of {queue_length}] {title}")
         player.play(url)
         player.wait_for_playback()
 
 
 while True:
     try:
-        choice = input("1 - Show Popular\n2 - Search\n> ")
+        choice = input("1 - Popular\n2 - Search\n> ")
         video_ids = get_data(choice)
         choice = input("> ").split()
         choice_list = []
@@ -70,7 +74,7 @@ while True:
             if not item > 19 and not item < 0:
                 choice_list.append(item)
         video_ids = [video_ids[i] for i in choice_list]
-        video_playback(video_ids)
+        video_playback(video_ids, len(choice_list))
         print(r"End Of Queue ¯\_(ツ)_/¯")
     except urllib.error.HTTPError:
         print("Error While Trying To Get Video URL")
