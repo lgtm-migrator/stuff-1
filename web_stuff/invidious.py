@@ -60,14 +60,18 @@ def video_playback(video_ids):
 
 
 while True:
-    choice = input("1 - Show Popular\n2 - Search\n> ")
-    video_ids = get_data(choice)
-    choice = input("> ").split()
-    choice_list = []
-    for item in choice:
-        item = int(item) - 1
-        if not item > 19 and not item < 0:
-            choice_list.append(item)
-    video_ids = [video_ids[i] for i in choice_list]
-    video_playback(video_ids)
-    print(r"End Of Queue ¯\_(ツ)_/¯")
+    try:
+        choice = input("1 - Show Popular\n2 - Search\n> ")
+        video_ids = get_data(choice)
+        choice = input("> ").split()
+        choice_list = []
+        for item in choice:
+            item = int(item) - 1
+            if not item > 19 and not item < 0:
+                choice_list.append(item)
+        video_ids = [video_ids[i] for i in choice_list]
+        video_playback(video_ids)
+        print(r"End Of Queue ¯\_(ツ)_/¯")
+    except urllib.error.HTTPError:
+        print("Error While Trying To Get Video URL")
+        continue
