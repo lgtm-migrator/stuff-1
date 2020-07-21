@@ -72,35 +72,36 @@ def process_file(file):
             file.write(content)
 
 
-urls = remove_comments(source_file)
-commented_urls = "\n".join(["# " + url for url in urls])
+if __name__ == "__main__":
+    urls = remove_comments(source_file)
+    commented_urls = "\n".join(["# " + url for url in urls])
 
-print("Downloading Files...")
-download = ThreadPool(5).imap_unordered(download, urls)
-for download in download:
-    print(download)
+    print("Downloading Files...")
+    download = ThreadPool(5).imap_unordered(download, urls)
+    for download in download:
+        print(download)
 
-print("Merging Files...")
-merge_files(tempdir + "*")
-process_file(merged_file)
+    print("Merging Files...")
+    merge_files(tempdir + "*")
+    process_file(merged_file)
 
-with open(merged_file, "r") as f:
-    blocklist = f.read()
-    blocked_domains = len(blocklist.rstrip().split("\n"))
-    f.close()
+    with open(merged_file, "r") as f:
+        blocklist = f.read()
+        blocked_domains = len(blocklist.rstrip().split("\n"))
+        f.close()
 
-content = f'''
-# Hosts File Generated From The Following Sources :
-{commented_urls}
-{header}
-# Blocklist
-{blocklist}
-'''
+    content = f'''
+    # Hosts File Generated From The Following Sources :
+    {commented_urls}
+    {header}
+    # Blocklist
+    {blocklist}
+    '''
 
-print("Writing To Hosts File...")
-with open(hosts_file, "w") as f:
-    f.write(content)
+    print("Writing To Hosts File...")
+    with open(hosts_file, "w") as f:
+        f.write(content)
 
-print(f"Blocked {blocked_domains} Domains")
-print("Cleaning Up...")
-shutil.rmtree(tempdir)
+    print(f"Blocked {blocked_domains} Domains")
+    print("Cleaning Up...")
+    shutil.rmtree(tempdir)
