@@ -8,5 +8,5 @@ def fizzbuzz(input):
     return input
 
 
-while True:
+while __name__ == "__main__":
     print(fizzbuzz(int(input("Number : "))))
