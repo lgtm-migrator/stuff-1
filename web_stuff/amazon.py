@@ -1,10 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-headers = ({"User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome"
-            "/75.0.3770.100 Safari/537.36"})
+headers = ({
+    "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome"
+    "/75.0.3770.100 Safari/537.36"
+})
 
 
 def amazon_search(search_term):
@@ -25,4 +27,5 @@ def amazon_search(search_term):
     return name_list, price_list
 
 
-print(amazon_search(input("Search Term\n> ")))
+if __name__ == "__main__":
+    print(amazon_search(input("Search Term\n> ")))
