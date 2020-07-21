@@ -7,11 +7,11 @@ def duck_search(search_term):
     url = f"https://api.duckduckgo.com/?q={search_term}&format=json"
     content = urllib.request.urlopen(url).read()
     json_content = json.loads(content)
-    print(json_content)
     result = json_content["AbstractText"]
     if json_content["Abstract"] == "":
         result = json_content["RelatedTopics"][0]["Text"]
-    return(result)
+    return (result)
 
 
-print(duck_search(input("Search Term\n> ")))
+if __name__ == "__main__":
+    print(duck_search(input("Search Term\n> ")))
