@@ -1,12 +1,12 @@
 def emoji_converter(message):
     words = message.split(' ')
     emoji_mapping = {
-        ':)':  '😃',
-        ':(': '😟',
-        ':*': '😘',
-        ":'(": '😢',
-        ":/": '😕',
-        "/shrug": '¯\_(ツ)_/¯'
+        ":)":  "😃",
+        ":(": "😟",
+        ":*": "😘",
+        ":'(": "😢",
+        ":/": "😕",
+        "/shrug": r"¯\_(ツ)_/¯"
     }
     output = ''
     for word in words:
@@ -14,4 +14,6 @@ def emoji_converter(message):
     return output
 
 
-output = emoji_converter(input("> "))
+if __name__ == "__main__":
+    output = emoji_converter(input("> "))
+    print(output)
