@@ -6,7 +6,6 @@ def guess_number():
     special_number = random.randint(0, 9)
     guess_count = 0
     guess_limit = 3
-
     while guess_count < guess_limit:
         try:
             guess = int(input("Guess : "))
@@ -27,4 +26,5 @@ The special number was {special_number}
 """)
 
 
-guess_number()
+if __name__ == "__main__":
+    guess_number()
