@@ -38,4 +38,5 @@ def emote_convert(words):
     return output
 
 
-emote_convert(input("> "))
+if __name__ == "__main__":
+    emote_convert(input("> "))
