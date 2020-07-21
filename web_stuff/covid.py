@@ -11,4 +11,5 @@ def covid_data():
     return added, total
 
 
-covid_data()
+if __name__ == "__main__":
+    print(covid_data())
