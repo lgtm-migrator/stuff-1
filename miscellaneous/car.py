@@ -3,7 +3,6 @@ def car():
     print("Type HELP to get started")
     while True:
         command = input("> ").lower()
-
         if command == "help":
             print("""
 Start - to start the car
@@ -28,4 +27,5 @@ Quit - to exit the program
             print("I don't understand that!")
 
 
-car()
+if __name__ == "__main__":
+    car()
