@@ -1,7 +1,3 @@
-start = int(input('Start : '))
-end = int(input('End : '))
-
-
 def even_number(start, end):
     count = 0
     number_list = []
@@ -9,8 +5,7 @@ def even_number(start, end):
     if type == "from":
         end += 1
     elif type == "between":
-        end -= 2
-    for number in range(start, end):
+        end -= 2    for number in range(start, end):
         if number % 2 == 0:
             number_list.append(number)
             count += 1
@@ -21,4 +16,7 @@ List Of Numbers : {number_list}
     return output
 
 
-print(even_number(start, end))
+if __name__ == "__main__":
+    start = int(input("Start: "))
+    end = int(input("End: "))
+    print(even_number(start, end))
