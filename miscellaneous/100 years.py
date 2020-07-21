@@ -1,8 +1,10 @@
-name = input("What is your name ? ").title()
-current_age = int(input("What is your age ? "))
+def _100years(name, age, current_year):
+    final_year = current_year + (100 - int(age))
+    string = "{} will be 100 years old in {}".format(name, final_year)
+    return string
 
 
-current_year = 2020
-final_year = 2020 + (100 - current_age)
-
-print(f"{name} will be 100 years old in {final_year}")
+if __name__ == "__main__":
+    name = input("Name: ")
+    age = input("Age: ")
+    print(_100years(name, age, 2020))
