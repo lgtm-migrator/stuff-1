@@ -1,3 +1,6 @@
+import json
+
+
 def add_contact():
     contacts.update({name: number})
 
@@ -18,48 +21,50 @@ def save_contacts():
     print("Contacts successfully saved to contacts.txt")
 
 
-contacts = {
+if __name__ == "__main__":
+    try:
+        f = open("contacts.txt")
+        contacts = json.loads(f.read().replace("'", "\""))
+        print("Loaded contacts.txt")
+    except FileNotFoundError:
+        contacts = {}
+    print("Type HELP to get started... ")
 
-}
-
-print("Type HELP to get started... ")
-
-while True:
+while __name__ == "__main__":
     command = input("> ")
     command = command.lower()
-    if command == 'help':
-        print("""
+    if command == "help":
+        print('''
 ADD - To add a new contact
 REMOVE - To remove a contact
 EDIT - To edit a contact
-SEARCH - To find a contact
 VIEW - To view all existing contacts
 SAVE - Outputs all contacts to a TXT file
 QUIT - To exit the program
-""")
-    elif command == 'add':
-        name = input('Name : ')
+''')
+    elif command == "add":
+        name = input("Name : ")
         name = name.title()
-        number = input('Number : ')
+        number = input("Number : ")
         add_contact()
-    elif command == 'view':
+    elif command == "view":
         for keys, values in contacts.items():
             print(keys)
             print(values)
-    elif command == 'remove':
-        name = input('Name (To be removed) : ')
+    elif command == "remove":
+        name = input("Name (To be removed) : ")
         name = name.title()
         remove_contact()
-    elif command == 'edit':
-        print('WARNING : If name does not exist, a new entry will be added')
-        name = input('Name of contact to be edited : ')
-        number = input('New Number : ')
+    elif command == "edit":
+        print("WARNING : If name does not exist, a new entry will be added")
+        name = input("Name of contact to be edited : ")
+        number = input("New Number : ")
         name = name.title()
         edit_contacts()
-    elif command == 'quit':
-        print('Thanks for using this program!')
+    elif command == "quit":
+        print("Quitting...")
         break
-    elif command == 'save':
+    elif command == "save":
         save_contacts()
     else:
-        print('Invalid Command')
+        print("Invalid Command")
