@@ -12,7 +12,7 @@ def convert(data, currency, value):
     currency = currency.upper()
     base_currency = data["base"]
     conversion_rate = data["rates"][currency]
-    converted_amount = int(value) * conversion_rate
+    converted_amount = float(value) * conversion_rate
     result = "{} {} converted from {} at the conversion rate of {}".format(
         converted_amount, currency, base_currency, conversion_rate)
     print(result)
