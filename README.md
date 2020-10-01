@@ -1,2 +1,2 @@
-# python-stuff
-Random python stuff made by me :/
+# stuff
+stuff
