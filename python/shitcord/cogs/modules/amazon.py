@@ -21,14 +21,18 @@ async def amazon_search(search_term):
                 names = parsed_content.findAll(
                     class_="a-size-medium a-color-base a-text-normal")
                 prices = parsed_content.findAll(class_="a-price-whole")
+
                 name_list = []
                 price_list = []
+
                 for item in names:
                     item = item.get_text()
                     name_list.append(item)
+
                 for item in prices:
                     item = item.get_text()
                     price_list.append(item)
+
                 return name_list, price_list
 
 

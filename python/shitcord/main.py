@@ -1,0 +1,1 @@
+https://github.com/git-bruh/matrix-discord-bridge/blob/main/main.py
